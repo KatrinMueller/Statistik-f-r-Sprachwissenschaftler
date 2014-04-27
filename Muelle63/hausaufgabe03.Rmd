@@ -74,7 +74,7 @@ R-Code können Sie auch direkt in den Fließtext bauen: Die Quadratwurzel von 13
 
 Ergänzen Sie folgende Zeile mit Inline R-code, sodass der Satz korrekt und vollständig ist:
 
-Die Summe von 98545455678767 und 567886538546532323 ist: code_hier .
+Die Summe von 98545455678767 und 567886538546532323 ist: `r 98545455678767+567886538546532323`.
 
 ```{r}
 x <- 98545455678767+567886538546532323
