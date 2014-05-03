@@ -1,6 +1,6 @@
 # Hausaufgabe 04
 # Katrin Müller <Muelle63@students.uni-marburg.de>
-# 2014-05-02
+# 2014-05-03
 # Diese Datei dient nur Prüfungszwecken.
 
 # Sie sollten die Datei auch in Ihren Ordner kopieren und einen Commit machen, 
@@ -93,7 +93,7 @@ print(frauen.studiengang.bw)
 # unterschiedlich groß. Aber wie sieht der Vergleich auf den ersten Blick aus?
 # (Keine explizite Antwort nötig, nur eine Überlegung.)
 # Beim M.A. Klinische Linguistik ist die Streuung am größten. 
-# Beim M.A. Speech Science gibt es einen Ausreißer (bei 175). 
+# Beim M.A. Speech Science gibt es einen Ausreißer (bei 175), ansonsten ist die Streuung eher gering. 
 # Bei other sieht die Verteilung sehr regelmäßig aus. 
 # Für alle Studiengänge (abgesehen von M.A. Germanistische Linguistik) liegt der Median in etwa in gleicher Höhe.
 
@@ -106,6 +106,7 @@ print(frauen.studiengang.dichte)
 # (Keine explizite Antwort nötig, nur eine Überlegung.)
 # Wegen der unterschiedlichen Gruppengröße ist es schwieriger die einzelnen Gruppen miteinander zu vergleichen.
 # Der Ausreißer im Studiengang Speech Science fällt weniger auf (nur eine Person)
+# Die höchste Dichte liegt bei ca. 168 cm und entspricht somit etwa dem Median beim BW.
 
 # Welche Gruppe hat gefehlt? Wie viele Datenpunkte gab es für die Gruppe?
 # (Keine explizite Antwort nötig, nur eine Überlegung.)
@@ -135,17 +136,42 @@ print(klinisch)
 # Linguistik Kognition und Kommunikation und Speech Science
 # HINT: wie sehen die Namen aus bzw. wie werden sie im data frame buchstabiert?
 linkk <- frauen[frauen$major == "M.A..Linguistik.Kognition.und.Kommunikation",]
+print(linkk)
 speech <- frauen[frauen$major == "M.A..Speech.Science",] 
+print(speech)
 
 # Berechnen Sie -- ohne Hilfe von sd() -- die Standardabweichung für die Größe der drei 
 # Gruppen. Sie können auch weitere Zeilen hinzufügen, wenn es Ihnen so leichter
 # ist. 
 # HINT: Formel und Beispiel für die Berechnung auf den Folien!
-klinisch.sd <- 
-linkk.sd <- CODE
-speech.sd <- CODE_HIER
+# M.A. Klinische Linguistik
+x <- (klinisch$height)
+abweichung.klinisch <- x - mean(x)
+quadr.abweichung.klinisch <- abweichung.klinisch^2
+varianz.x <- mean(quadr.abweichung.klinisch)
+print(varianz.x)
+klinisch.sd <- sqrt(varianz.x)
+print(klinisch.sd)
+
+# M.A. Linguistik Kognition und Kommunikation
+y <- (linkk$height)
+abweichung.linkk <- y - mean(y)
+quadr.abweichung.linkk <- abweichung.linkk^2
+varianz.y <- mean(quadr.abweichung.linkk)
+print(varianz.y)
+linkk.sd <- sqrt(varianz.y)
+print(linkk.sd)
+
+# M.A. Speech Science
+z <- (speech$height)
+abweichung.speech <- z - mean(z)
+quadr.abweichung.speech <- abweichung.speech^2
+varianz.z <- mean(quadr.abweichung.speech)
+print(varianz.z)
+speech.sd <- sqrt(varianz.z)
+print(speech.sd)
 
 # Berichten Sie jetzt die Mittelwerte und Standardabweichungen für die drei Gruppen. Die erste Gruppe steht hier als Muster:
 print( paste("Studiengang: Klinische Linguistik","Mean:",mean(klinisch$height),"SD:",klinisch.sd) )
-#CODE_HIER
-
+print( paste("Studiengang: Linguistik Kognition und Kommunikation","Mean:",mean(linkk$height),"SD:",linkk.sd) )
+print( paste("Studiengang: Speech Science","Mean:",mean(speech$height),"SD:",speech.sd) )
