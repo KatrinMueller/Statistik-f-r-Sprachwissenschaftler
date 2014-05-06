@@ -6,7 +6,10 @@
 # Sie sollten die Datei auch in Ihren Ordner kopieren und einen Commit machen, 
 # bevor Sie die Kopie weiter anpassen! Vergessen Sie dabei nicht, Namen, Datum 
 # und ggf. Lizenz zu ändern. Um einiges leichter zu machen, sollten Sie auch die
-# Datei body_dim_long.tab aus dem Data-Ordner kopieren, stagen und commiten.
+# Datei body_dim_long.tab aus dem Data-Ordner kopieren, stagen und commiten. Sie
+# müssen ggf. Ihr Arbeitsverzeichnis setzen, wenn R die .tab-Datei nicht finden
+# kann: 
+# Session > Set Working Directory > Source File Location
 
 # (Im folgenden müssen Sie die Code-Zeilen wieder aktiv setzen -- ich habe sie
 # vorläufig auskommentiert, damit der Output beim ersten Beispiel sehr
