@@ -1,6 +1,6 @@
 % Hausaufgabe 07
-% Phillip Alday <phillip.alday@staff.uni-marburg.de>
-% 2014-05-07
+% Katrin Müller <Muelle63@students.uni-marburg.de>
+% 2014-05-08
 
 Falls die Umlaute in dieser und anderen Dateien nicht korrekt dargestellt werden, sollten Sie File > Reopen with Encoding > UTF-8 sofort machen (und auf jeden Fall ohne davor zu speichern), damit die Enkodierung korrekt erkannt wird! 
 
@@ -62,6 +62,7 @@ ggplot(data=noten.dist,aes(x=Notenpunkte,y=P,color=Standardabweichung)) + geom_l
 Ich habe die Grenzen der Grafik ein bisschen breiter gestellt, sodass man die Endpunkte klar sieht und Sie auch einen weiteren `ggplot`-Befehl kennen lernen. 
 
 Welche Verteilung sieht am fairsten aus? Warum?
+Die rote Verteilung sieht am fairsten aus.Die Kurve sieht normalverteilt aus und erfasst im Mittelfeld eine große Menge der Studenten (Fläche unter der Kurve). 
 
 Wir können das konkreter machen: welcher Anteil der Studenten bekommt bei den jeweiligen Verteilungen eine 1 (zumindest 13 NP)? Für die Verteilung mit $\sigma = 3$ sieht die Berechnung mit R so aus:
 ```{r}
@@ -76,8 +77,8 @@ Wenn wir das für alle drei Gruppen wiederholen möchten, ist es ziemlich ärger
 
 ```{r}
 for(s in c(3,4,5) ){
-  durchfall <- pnorm(5,mean=mu,sd=s)
-  output <- paste("Bei einer Standabweichung von",s, "fallen",durchfall*100,"% durch.")
+  durchfall <- pnorm(13,mean=mu,sd=s)
+  output <- paste("Bei einer Standabweichung von",s, "",durchfall*100,"% durch.")
   print(output)
 }
 ```
@@ -85,10 +86,18 @@ for(s in c(3,4,5) ){
 Aber wir hoffen alle, dass wir doch eine gute Note bekommen. Fügen Sie einen Code-Block hier ein, der das gleiche aber mit "ausgezeichneten" Noten (=1 bzw. >= 13) macht. (Bei evtl. Copy-Paste nicht vergessen, "fallen...durch" durch etwas Passendes zu ersetzen!)  
 
 code_block_hier
+```{r}
+pnorm(13,mean=mu,sd=3,lower.tail=FALSE)
+for(s in c(3,4,5) ){
+  bestehen.ausgezeichnet <- pnorm(13,mean=mu,sd=s, lower.tail=FALSE)
+  output <- paste("Bei einer Standabweichung von",s, "bestehen",bestehen.ausgezeichnet*100,"% ausgezeichnet.")
+  print(output)
+}
+```
 
 Wie steht die Anzahl guter Noten in Beziehung zur Anzahl schlechter Noten? 
 
-antwort_hier
+Es gibt eine viel höhere Wahrscheinlichkeit für schlechte Noten und eine geringere für ausgezeichnete Noten.
 
 Warum?
 
@@ -102,6 +111,7 @@ Schiefe (*skewness*) beschriebt die (A)Symmetrie einer Verteilung. Eine Verteilu
 Die Verteilung von Noten ist oft schief mit mehr guten Noten. Ist die Verteilung rechts- oder linksschief?
 
 antwort_hier
+Bei der Notenpunktverteilung (von 0-15 Punkte) liegt der Gipfel der guten Noten rechts. Aus diesem Grund ist die Verteilung linksschief.
 
 Vielleicht hilft folgende Grafik mit der Visualisierung:
 
@@ -152,19 +162,19 @@ Um überdurchschnittlich zu sein, muss man mehr als `r qnorm(0.5,mean=mu,sd=3)` 
 
 Nicht so überraschend, dass "überdurchschnittlich" auch "mehr Punkte als den Durchschnitt bekommen" heißt! Wie sieht es aus, wenn wir besser als 99% der anderen abschließen möchten?
 
-Um in dem besten 1% abzuschließen, muss man zumindest `code_hier` Notenpunkte bekommen.
+Um in dem besten 1% abzuschließen, muss man zumindest `r qnorm(0.99,mean=mu,sd=3)` Notenpunkte bekommen.
 
 ## z-Transformation
 Bei der Überprüfung der Lehrqualität scheint es der Verwaltung, dass ein gewisser Dozent andere Noten als andere Dozenten vergibt. Es wird entschieden, dass der Notenspiegel bei den Teilnehmern in einem von seinen Kursen getestet wird, um zu schauen, ob er sich von signifikant von der idealisierten Notenverteilung ($\mu=8,\sigma=3$) unterscheidet. Um zu zeigen, dass Gott $\alpha=0.06$ so viel liebt wie $\alpha=0.05$ `r citep("10.1037/0003-066X.44.10.1276")`, setzt die Verwaltung das Signikanzniveau auf 0.06. 
 
-Der kritische Wert für einen einseitigen $z$-Test ist `code_hier`.
+Der kritische Wert für einen einseitigen $z$-Test ist `r qnorm(0.95)`.
 
-Die kritischen Werte für einen zweiseitigen $z$-Test sind $\pm$`code_hier`.
+Die kritischen Werte für einen zweiseitigen $z$-Test sind $\pm$`r qnorm(0.975)`.
 
 ### Gibt es einen Unterschied?
 Bei diesem Dozenten ist die Verwaltung wirklich unsicher, ob und was für einen Unterschied es geben könnte. (Welche Testart sollte man hier nutzen?)
 
-In einem kleinen Seminar mit 7 Studenten beträgt der Durchschnittswert 10. Unterscheidet sich der Notenspiegel von dem idealen? Berechnen Sie den $z$-Test:
+In einem kleinen Seminar mit 7 Studenten beträgt der Durchschnittswert 10. Unterscheidet sich der Notenspiegel von dem idealen? Berechnen Sie den $z$-Test: ungerichter zweiseitiger z-Test
 
 code_hier
 
@@ -207,4 +217,4 @@ bibliography()
 
 
 # Lizenz
-Dieses Werk ist lizenziert unter einer CC-BY-NC-SA Lizenz.
+Diese Datei dient nur Prüfungszwecken.
