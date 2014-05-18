@@ -143,7 +143,7 @@ print(logrt.plot)
 # Daten. Nach jedem Test sollten Sie auch programmatisch (=durch if-Blöcke)
 # ausdrücken, ob die Varianzen homogen sind.
 
-var.test(rt$logRT ~ rt$subj)
+var.test <- var.test(rt$logRT ~ rt$subj)
 
 if (var.test$p.value > 0.05){
   print("F-Test insignifikant, die Varianzen sind homogen .")
