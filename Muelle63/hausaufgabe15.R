@@ -1,6 +1,6 @@
 # Hausaufgabe 15
 # Katrin Müller <Muelle63@students.uni-marburg.de>
-# 2014-06-05
+# 2014-06-08
 # Diese Datei dient nur Prüfungszwecken.
 
 
@@ -66,7 +66,7 @@ m2 <- lm(weight.kg ~ height.cm, data=women.metric)
 print(summary(m2))
 
 # Sehen die Plots anders aus? Hat sich der R^2 Wert geändert? Die t-Werte? Die Koeffizienten? 
-Nein, alles gleich.
+# Die Plots sehen gleich aus.R^2 und t-Werte sind gleich.Die Koeffizienten sind unterschiedlich.
 
 # Was passiert, wenn wir das Modell umdrehen? Also, height.cm als eine Funktion
 # von weight.kg darstellen? Plotten und berechnen Sie das neue Modell, wie ich
@@ -81,6 +81,7 @@ print(summary(m4))
 
 # Hat sich der R^2 Wert geändert? Die t-Werte? Die Koeffizienten? Was ist die
 # Beziehung zwischen diesem Modell und m2?
+#R^2 hat sich nicht geändert. T-Werte und Koeffizienten sind unterschiedlich.
 
 # Wie sieht es aus mit den Daten zum Kursteilnehmern? Plotten Sie und berechnen
 # Sie ein Modell für das Gewicht der Teilnehmer als Funktion von Körpergröße.
@@ -92,5 +93,5 @@ print(summary(m5))
 # Warum funktioniert die Regression besser beim Datensatz "women" als bei den
 # Kursteilnehmerdaten? HINT: Lesen Sie die Hilfe-Beschreibung von women! 
 
-# Der Datensatz women gibt die Durchschnittgrößen und -gewichte an, bei uns 
-# waren es Rohdaten (zufällig aus dem Kurs).
+# Der Datensatz women gibt die Durchschnittgrößen und -gewichte an, es handelt sich bereits um Mittelwerte für US-Frauen zwischen 30-39.
+# Bei uns waren es zufällige Rohdaten aus dem Kurs (inklusive Männer).
