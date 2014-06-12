@@ -62,4 +62,4 @@ ggplot(diamonds,aes(x=carat,y=price,color=color)) + geom_point() + facet_wrap(~c
 Haben Sie dabei explorativ oder konfirmativ gearbeitet? Was hat das für eine Auswirkung auf die Interpretation der Ergebnisse?
 
 # Lizenz
-Dieses Werk ist lizenziert unter einer CC-BY-NC-SA Lizenz.
+Diese Datei dient nur Prüfungszwecken.
