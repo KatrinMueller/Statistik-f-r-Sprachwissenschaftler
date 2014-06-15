@@ -1,6 +1,6 @@
 % Hausaufgabe 16
 % Katrin Müller <Muelle63@students.uni-marburg.de>
-% 2014-06-12
+% 2014-06-15
 
 Falls die Umlaute in dieser und anderen Dateien nicht korrekt dargestellt werden, sollten Sie File > Reopen with Encoding > UTF-8 sofort machen (und auf jeden Fall ohne davor zu speichern), damit die Enkodierung korrekt erkannt wird! 
 
@@ -49,7 +49,7 @@ Mögliche Ausgangsfragen sind unter anderem:
 
 Sie können sich auch [das *ggplot* Buch](http://dx.doi.org/10.1007/978-0-387-98141-3) zur Inspiration anschauen, v.a. Abbildungen 4.7, 4.8, 4.9, 5.2, 5.3, 5.4, 5.6, 5.14, 7.16, 9.1  und Kapitel 2.2-2.5 könnten inspirierend wirken. Den Code zur Erstellung der Figuren findet man immer im Haupttext.
 
-**Originale Fragestellungen und Auswertungen werden mit Bonuspunkten belohnt!** 
+**Originelle Fragestellungen und Auswertungen werden mit Bonuspunkten belohnt!** 
 
 Hier ein paar Grafiken (auch im Buch zu finden):
 ```{r}
@@ -60,6 +60,79 @@ ggplot(diamonds,aes(x=carat,y=price,color=color)) + geom_point() + facet_wrap(~c
 
 # Noch eine Überlegung
 Haben Sie dabei explorativ oder konfirmativ gearbeitet? Was hat das für eine Auswirkung auf die Interpretation der Ergebnisse?
+
+**Analyse**
+head(diamonds)
+
+Ausgangsfrage: Wovon hängt der Preis eines Diamanten ab?
+Zuerst zur Visualisierung ein paar Grafiken geplottet, exemplarisch für 
+Preis und Farbe sowie Preis und Karat etc....
+```{r}
+ggplot(data=diamonds)+ geom_density(aes(x=price, color=color, fill=color),alpha=0.3)
+ggplot(data=diamonds)+ geom_jitter(aes(x=color, y=price, color=color, fill=color),alpha=0.3)
+ggplot(data=diamonds)+ geom_violin(aes(x=color, y=price, color=color, fill=color),alpha=0.3)
+ggplot(data=diamonds)+ geom_boxplot(aes(x=color, y=price, color=color, fill=color),alpha=0.3)
+
+ggplot(data=diamonds)+ geom_density(aes(x=price, color=carat, fill=carat),alpha=0.3)
+ggplot(data=diamonds)+ geom_jitter(aes(x=carat, y=price, color=carat, fill=carat),alpha=0.3)
+ggplot(data=diamonds)+ geom_violin(aes(x=carat, y=price, color=carat, fill=carat),alpha=0.3)
+ggplot(data=diamonds)+ geom_boxplot(aes(x=carat, y=price, color=carat, fill=carat),alpha=0.3)
+
+ggplot(data=diamonds)+ geom_jitter(aes(x=cut, y=price, color=cut, fill=cut),alpha=0.3)
+```
+
+Die Voraussetzungen für eine ANOVA sind erfüllt, nämlich:
+-unabhängige Teilstichproben
+-abhängige Variable muss mindestens intervallskaliert sein
+- bei n<30 muss die abhängige Variable in der Population normalverteilt sein
+- die Varianzen innerhalb aller Populationen müssen homogen sein
+
+```{r}
+Preis.aov<-aov(price ~ carat+cut+color+clarity+depth+table+x+y+z, data=diamonds)
+Preis.aov
+summary(Preis.aov)
+```
+
+Die ANOVA zeigt, dass Karat, Schnitt, Farbe, Reinheit, table und x einen hochsignifikanten Einfluss auf den Preis haben (***). Der Einfluss von depth auf den Preis ist auch signifikant auf dem Level ‘*’ 0.05. Von y und z hingegen scheint der Preis nicht abhängig zu sein. Die Werte sind nicht signifikant.
+
+Man kann auch die Interaktionen betrachten:
+```{r}
+summary(aov(price~carat*x*y*z,data=diamonds))
+```
+
+Alle Haupteffekte sind signifikant. Auch die Interaktionen sind signifikant, außer bei carat:y und carat:z. ( Die innerhalb-Varianz ist größer als die Zwischen-Varianz.)
+
+Außerdem kann man eine lineare Regression machen, z.B. der Zusammenhang von Preis und Karat.
+
+```{r}
+summary(lm(price~carat,data=diamonds))
+summary(lm(price~y,data=diamonds))
+summary(lm(price~x,data=diamonds))
+summary(lm(price~z,data=diamonds))
+summary(lm(price~table,data=diamonds))
+```
+
+Karat erklärt viel Varianz vom Preis, denn R^2=0.85.
+Weite erklärt viel Varianz vom Preis, denn R^2=0.75.
+Länge erklärt viel Varianz vom Preis, denn R^2=0.78.
+Tiefe erklärt viel Varianz vom Preis, denn R^2=0.74.
+Table erklärt sehr wenig Varianz vom Preis, denn R^2=0.02.
+
+Man kann die lineare Regression für Preis und Karat auch plotten:
+```{r}
+ggplot(diamonds,aes(x=price,y=carat)) +  geom_point() + geom_smooth(method="lm")
+```
+
+Weiterführende Frage: Angenommen man findet irgendwo auf der Welt einen Diamanten, der 5000 Karat hat. Welche Vorhersage kann man über den Preis treffen, wenn man die Einzigartigkeit des Diamanten als Einflussfaktor auf den Preis außen vor lässt? Wie wertvoll ist der Diamant?
+
+Lineare Regression eignet sich um Vorhersagen über Datenpunkte, die wir nicht bekommen haben, zu machen.(predict)
+
+```{r}
+Wert<- -2256.36 + 7756.43*5000
+Wert
+```
+
+Der Diamant wäre vermutlich ca. 38,7 Mio. US-Dollar wert.
 
 # Lizenz
 Diese Datei dient nur Prüfungszwecken.
