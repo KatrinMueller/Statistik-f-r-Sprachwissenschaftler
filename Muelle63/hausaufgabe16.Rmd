@@ -65,6 +65,9 @@ Haben Sie dabei explorativ oder konfirmativ gearbeitet? Was hat das für eine Au
 head(diamonds)
 
 Ausgangsfrage: Wovon hängt der Preis eines Diamanten ab?
+Abhängige Variable: price
+Unabhängige Variablen: carat, cut, color, clarity, x, y, z, depth, table
+
 Zuerst zur Visualisierung ein paar Grafiken geplottet, exemplarisch für 
 Preis und Farbe sowie Preis und Karat etc....
 ```{r}
@@ -73,12 +76,14 @@ ggplot(data=diamonds)+ geom_jitter(aes(x=color, y=price, color=color, fill=color
 ggplot(data=diamonds)+ geom_violin(aes(x=color, y=price, color=color, fill=color),alpha=0.3)
 ggplot(data=diamonds)+ geom_boxplot(aes(x=color, y=price, color=color, fill=color),alpha=0.3)
 
-ggplot(data=diamonds)+ geom_density(aes(x=price, color=carat, fill=carat),alpha=0.3)
 ggplot(data=diamonds)+ geom_jitter(aes(x=carat, y=price, color=carat, fill=carat),alpha=0.3)
-ggplot(data=diamonds)+ geom_violin(aes(x=carat, y=price, color=carat, fill=carat),alpha=0.3)
-ggplot(data=diamonds)+ geom_boxplot(aes(x=carat, y=price, color=carat, fill=carat),alpha=0.3)
-
 ggplot(data=diamonds)+ geom_jitter(aes(x=cut, y=price, color=cut, fill=cut),alpha=0.3)
+ggplot(data=diamonds)+ geom_jitter(aes(x=clarity, y=price, color=clarity, fill=clarity),alpha=0.3)
+ggplot(data=diamonds)+ geom_jitter(aes(x=depth, y=price, color=depth, fill=depth),alpha=0.3)
+ggplot(data=diamonds)+ geom_jitter(aes(x=table, y=price, color=table, fill=table),alpha=0.3)
+ggplot(data=diamonds)+ geom_jitter(aes(x=x, y=price, color=x, fill=x),alpha=0.3)
+ggplot(data=diamonds)+ geom_jitter(aes(x=y, y=price, color=y, fill=y),alpha=0.3)
+ggplot(data=diamonds)+ geom_jitter(aes(x=z, y=price, color=z, fill=z),alpha=0.3)
 ```
 
 Die Voraussetzungen für eine ANOVA sind erfüllt, nämlich:
@@ -87,13 +92,37 @@ Die Voraussetzungen für eine ANOVA sind erfüllt, nämlich:
 - bei n<30 muss die abhängige Variable in der Population normalverteilt sein
 - die Varianzen innerhalb aller Populationen müssen homogen sein
 
+Einfaktorielle ANOVA:
 ```{r}
-Preis.aov<-aov(price ~ carat+cut+color+clarity+depth+table+x+y+z, data=diamonds)
+aov1<-aov(price~carat, data=diamonds)
+summary(aov1)
+aov2<-aov(price~cut, data=diamonds)
+summary(aov2)
+aov3<-aov(price~color, data=diamonds)
+summary(aov3)
+anova4<-aov(price~clarity, data=diamonds)
+summary(anova4)
+aov5<-aov(price~x, data=diamonds)
+summary(aov5)
+aov6<-aov(price~y, data=diamonds)
+summary(aov6)
+aov7<-aov(price~z, data=diamonds)
+summary(aov7)
+aov8<-aov(price~depth, data=diamonds)
+summary(aov8)
+aov9<-aov(price~table, data=diamonds)
+summary(aov9)
+```
+Die ANOVA zeigt, dass alle Variablen einen hochsignifikanten (***) Einfluss auf den Preis haben, außer depth ist weniger signifikant (nämlich nur auf dem Level ‘*’ 0.05).
+
+Mehrfaktorielle ANOVA:
+```{r}
+Preis.aov<-aov(price ~ carat+cut+color+clarity+x+y+z+table+depth, data=diamonds)
 Preis.aov
 summary(Preis.aov)
 ```
 
-Die ANOVA zeigt, dass Karat, Schnitt, Farbe, Reinheit, table und x einen hochsignifikanten Einfluss auf den Preis haben (***). Der Einfluss von depth auf den Preis ist auch signifikant auf dem Level ‘*’ 0.05. Von y und z hingegen scheint der Preis nicht abhängig zu sein. Die Werte sind nicht signifikant.
+Die ANOVA zeigt, dass Karat, Schnitt, Farbe, Reinheit, table, depth, z und x einen hochsignifikanten Einfluss auf den Preis haben (***). Von y hingegen scheint der Preis nicht abhängig zu sein. Der p-Wert ist nicht signifikant.
 
 Man kann auch die Interaktionen betrachten:
 ```{r}
@@ -110,6 +139,7 @@ summary(lm(price~y,data=diamonds))
 summary(lm(price~x,data=diamonds))
 summary(lm(price~z,data=diamonds))
 summary(lm(price~table,data=diamonds))
+summary(lm(price~depth,data=diamonds))
 ```
 
 Karat erklärt viel Varianz vom Preis, denn R^2=0.85.
@@ -117,6 +147,7 @@ Weite erklärt viel Varianz vom Preis, denn R^2=0.75.
 Länge erklärt viel Varianz vom Preis, denn R^2=0.78.
 Tiefe erklärt viel Varianz vom Preis, denn R^2=0.74.
 Table erklärt sehr wenig Varianz vom Preis, denn R^2=0.02.
+Depth erklärt fast keine Varianz vom Preis, denn R^2=9.483e-05.
 
 Man kann die lineare Regression für Preis und Karat auch plotten:
 ```{r}
@@ -132,7 +163,7 @@ Wert<- -2256.36 + 7756.43*5000
 Wert
 ```
 
-Der Diamant wäre vermutlich ca. 38,7 Mio. US-Dollar wert.
+Der Diamant wäre vermutlich ca. 38,8 Mio. US-Dollar wert.
 
 # Lizenz
 Diese Datei dient nur Prüfungszwecken.
