@@ -1,6 +1,6 @@
 % Hausaufgabe 16
 % Katrin Müller <Muelle63@students.uni-marburg.de>
-% 2014-06-15
+% 2014-06-16
 
 Falls die Umlaute in dieser und anderen Dateien nicht korrekt dargestellt werden, sollten Sie File > Reopen with Encoding > UTF-8 sofort machen (und auf jeden Fall ohne davor zu speichern), damit die Enkodierung korrekt erkannt wird! 
 
@@ -87,12 +87,12 @@ ggplot(data=diamonds)+ geom_jitter(aes(x=z, y=price, color=z, fill=z),alpha=0.3)
 ```
 
 Die Voraussetzungen für eine ANOVA sind erfüllt, nämlich:
--unabhängige Teilstichproben
--abhängige Variable muss mindestens intervallskaliert sein
+- unabhängige Teilstichproben
+- abhängige Variable muss mindestens intervallskaliert sein
 - bei n<30 muss die abhängige Variable in der Population normalverteilt sein
 - die Varianzen innerhalb aller Populationen müssen homogen sein
 
-Einfaktorielle ANOVA:
+*Einfaktorielle ANOVA*
 ```{r}
 aov1<-aov(price~carat, data=diamonds)
 summary(aov1)
@@ -115,7 +115,7 @@ summary(aov9)
 ```
 Die ANOVA zeigt, dass alle Variablen einen hochsignifikanten (***) Einfluss auf den Preis haben, außer depth ist weniger signifikant (nämlich nur auf dem Level ‘*’ 0.05).
 
-Mehrfaktorielle ANOVA:
+*Mehrfaktorielle ANOVA*
 ```{r}
 Preis.aov<-aov(price ~ carat+cut+color+clarity+x+y+z+table+depth, data=diamonds)
 Preis.aov
@@ -124,14 +124,14 @@ summary(Preis.aov)
 
 Die ANOVA zeigt, dass Karat, Schnitt, Farbe, Reinheit, table, depth, z und x einen hochsignifikanten Einfluss auf den Preis haben (***). Von y hingegen scheint der Preis nicht abhängig zu sein. Der p-Wert ist nicht signifikant.
 
-Man kann auch die Interaktionen betrachten:
+Man kann auch die *Interaktionen* betrachten:
 ```{r}
 summary(aov(price~carat*x*y*z,data=diamonds))
 ```
 
 Alle Haupteffekte sind signifikant. Auch die Interaktionen sind signifikant, außer bei carat:y und carat:z. ( Die innerhalb-Varianz ist größer als die Zwischen-Varianz.)
 
-Außerdem kann man eine lineare Regression machen, z.B. der Zusammenhang von Preis und Karat.
+Außerdem kann man eine *lineare Regression* machen, z.B. der Zusammenhang von Preis und Karat usw.
 
 ```{r}
 summary(lm(price~carat,data=diamonds))
