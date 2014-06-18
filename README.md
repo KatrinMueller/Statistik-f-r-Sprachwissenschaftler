@@ -148,12 +148,14 @@ Woche | Datum          | Themen
 |      | **10.06.2014** | lineare Regression II
 |      |                | *Hausaufgabe bis 16.06.2014 12 Uhr:*
 |      |                | 1. `hausaufgabe16.Rmd`
-| 10.  | **16.06.2014** | Korrelationen
-|      | **17.06.2014** | das generalisierte lineare Model (GLM), logit-Regression
+| 10.  | **16.06.2014** | Wiederholung, implizite Darstellung des General Linear Modells (GLM)
+|      | **17.06.2014** | Korrelationen I
+|      |                | *Hausaufgabe bis 23.06.2014 12 Uhr:*
+|      |                | 1. `hausaufgabe18.R`
 | 11.  | **23.06.2014** | gemischte Modelle I
 |      | **24.06.2014** | gemischte Modelle II
-| 12.  | **30.06.2014** | $\chi^2$, logLikelihood & Likelihood-Ratio 
-|      | **01.07.2014** | Nicht-parametrische Tests I 
+| 12.  | **30.06.2014** | $\chi^2$, logLikelihood & Likelihood-Ratio  
+|      | **01.07.2014** | Nicht-parametrische Tests I
 | 13.  | **07.07.2014** | Nicht-parametrische Tests II
 |      | **08.07.2014** | Experimentaldesign
 | 14.  | **14.07.2014** | Fragestunde / Puffer
@@ -189,6 +191,7 @@ Die Reihe *Use R!* von Springer ist **kostenlos** über das Uni-Netz elektronisc
 * [Git -- the simple guide](http://rogerdudler.github.io/git-guide/)
 * [Literate programming, version control, reproducible research, collaboration, and all that](http://rpubs.com/bbolker/3153)
 * [Handy statistical lexicon](http://andrewgelman.com/2009/05/24/handy_statistic/)
+* [R for Cats](http://rforcats.net/)
 
 # ShinyApps
 * [Optional Stopping](https://palday.shinyapps.io/optional_stopping/)
