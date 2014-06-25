@@ -154,6 +154,8 @@ Woche | Datum          | Themen
 |      |                | 1. `hausaufgabe18.R`
 | 11.  | **23.06.2014** | gemischte Modelle I
 |      | **24.06.2014** | gemischte Modelle II
+|      |                | *Hausaufgabe bis 30.06.2014 12 Uhr:*
+|      |                | 1. `hausaufgabe20.Rmd`
 | 12.  | **30.06.2014** | $\chi^2$, logLikelihood & Likelihood-Ratio  
 |      | **01.07.2014** | Nicht-parametrische Tests I
 | 13.  | **07.07.2014** | Nicht-parametrische Tests II
@@ -172,7 +174,7 @@ Baayen, R. Harald (2008): Analyzing Linguistic Data: A Practical Introduction to
 
 Eid, Gollwitzer und Schmitt (2010): Statistik und Forschungsmethoden. Beltz Verlag.
 
-Field, A., Miles, J., & Field, Z. (2012): Discovering Statistics Using R. Sage Publications.
+[Field, A.](http://www.statisticshell.com/), Miles, J., & Field, Z. (2012): Discovering Statistics Using R. Sage Publications.
 
 Luhmann, M. (2010): R für Einsteiger. Einführung in die Statistiksoftware für die Sozialwissenschaften. Beltz Verlag.
 
@@ -181,24 +183,34 @@ Wickham, Hadley (2009): ggplot2. Springer.
 Die Reihe *Use R!* von Springer ist **kostenlos** über das Uni-Netz elektronisch verfügbar!  
 
 # Linksammlung
-* [RMarkdown](http://rmarkdown.rstudio.com/)
+
+## Git, R, Markdown
+* [Literate programming, version control, reproducible research, collaboration, and all that](http://rpubs.com/bbolker/3153)
 * [GitHub Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf)
 * [GitHub Git Resources](https://help.github.com/articles/what-are-other-good-resources-for-learning-git-and-github)
+* [Git -- the simple guide](http://rogerdudler.github.io/git-guide/)
+* [RMarkdown](http://rmarkdown.rstudio.com/)
 * [R Bloggers](http://www.r-bloggers.com/)
 * [RSeek](http://rseek.org/)
-* [CrossValidated](http://stats.stackexchange.com/)
 * [How to Search for R Materials](http://stackoverflow.com/questions/102056/how-to-search-for-r-materials)
-* [Git -- the simple guide](http://rogerdudler.github.io/git-guide/)
-* [Literate programming, version control, reproducible research, collaboration, and all that](http://rpubs.com/bbolker/3153)
-* [Handy statistical lexicon](http://andrewgelman.com/2009/05/24/handy_statistic/)
 * [R for Cats](http://rforcats.net/)
+* [R is a language](http://www.quantumforest.com/2012/01/r-is-a-language/)
+* [R Inferno](http://www.burns-stat.com/documents/books/the-r-inferno/)
+* [Try R](http://tryr.codeschool.com/)
+* [Quick-R](http://www.statmethods.net/)
+* [R Links](http://rwiki.sciviews.org/doku.php?id=rugs:r_user_groups) (Community Wiki)
 
-# ShinyApps
+## Statistik-Hilfe
+* [CrossValidated](http://stats.stackexchange.com/)
+* [Handy statistical lexicon](http://andrewgelman.com/2009/05/24/handy_statistic/)
+
+## ShinyApps
 * [Optional Stopping](https://palday.shinyapps.io/optional_stopping/)
 * [Confidence Intervals](https://palday.shinyapps.io/confidence_intervals/)
 * [From the Binomial to the Normal Distribution](https://palday.shinyapps.io/binomial_gaussian/) (Ein Beispiel für den Zentralen Grenzwertsatz)
-    
-# Kommentare zu p-Werten, NHST, und der üblichen statistischen Praxis
+
+## Kommentare zu p-Werten, NHST, und der üblichen statistischen Praxis
+* [Dance of the p-Values](https://www.youtube.com/watch?v=5OL1RqHrZQ8)
 * John Myles White
     1. [Good Tools for Individual Researchers are not Good Tools for Research Communities](http://www.johnmyleswhite.com/notebook/2012/05/10/criticism-1-of-nhst-good-tools-for-individual-researchers-are-not-good-tools-for-research-communities/)
     2. [NHST Conflates Rare Events with Evidence Against the Null Hypothesis](http://www.johnmyleswhite.com/notebook/2012/05/12/criticism-2-of-nhst-nhst-conflates-rare-events-with-evidence-against-the-null-hypothesis/)
@@ -216,22 +228,18 @@ Die Reihe *Use R!* von Springer ist **kostenlos** über das Uni-Netz elektronisc
     - [The Difference Between "Significant" and "Not Significant" is not Itself Statistically Significant](http://dx.doi.org/10.1198/000313006X152649 )
     - [Researcher degrees of freedom and accidental p-hacking](http://www.stat.columbia.edu/~gelman/research/unpublished/p_hacking.pdf)
     - [P-Values and Statistical Practice](http://www.stat.columbia.edu/~gelman/research/published/pvalues3.pdf)
-    
-# Andere Perspektive und Interessantes zur Statistik
+    - [Ken Rice presents a unifying approach to statistical inference and hypothesis testing](http://andrewgelman.com/2014/04/29/ken-rice-presents-unifying-approach-statistical-inference-hypothesis-testing/)
+
+## Andere Perspektive und Interessantes zur Statistik
 * [Famous statistician quotes](http://stats.stackexchange.com/questions/726/famous-statistician-quotes)
 * [Common statistical sins](http://stats.stackexchange.com/questions/4551/what-are-common-statistical-sins)
 * [Modes, Medians and Means: A Unifying Perspective](http://www.johnmyleswhite.com/notebook/2013/03/22/modes-medians-and-means-an-unifying-perspective/)
 * [How do we choose our default methods?](http://www.stat.columbia.edu/~gelman/research/published/copss.pdf)
 * ["The graph clearly shows that mammography adds virtually nothing to survival and if anything, decreases survival (and increases cost and provides unnecessary treatment)"](http://andrewgelman.com/2014/05/03/graph-clearly-shows-mammography-adds-virtually-nothing-survival-anything-decreases-survival-increases-cost-provides-unnecessary-treatment/) -- ein wichtiges Beispiel von Effektgröße vs. "signifikant" mit Brustkrebs!
-* [Ken Rice presents a unifying approach to statistical inference and hypothesis testing](http://andrewgelman.com/2014/04/29/ken-rice-presents-unifying-approach-statistical-inference-hypothesis-testing/)
 * [Understanding Simpson’s paradox using a graph](http://andrewgelman.com/2014/04/08/understanding-simpsons-paradox-using-graph/)
 * [loess explained in a GIF](http://simplystatistics.org/2014/02/13/loess-explained-in-a-gif/)
-* [On Chomsky and the Two Cultures of Statistical Learning](http://norvig.com/chomsky.html)
 * [Big Data...Big Deal? Maybe, if Used with Caution.](http://andrewgelman.com/2014/04/27/big-data-big-deal-maybe-used-caution/)
-* [Schools of Statistical Thought as Religion](http://andrewgelman.com/2014/04/12/schools-of-statistical-thoughts-are-sometimes-jokingly-likened-to-religions-this-analogy-is-not-perfect-unlike-religions-statistical-methods-have-no-supernatural-content-and-make-essentially-no-d/)
-* [Bayesian Modelling of Anscombe's Quartet](http://www.sumsar.net/blog/2013/06/bayesian-modeling-of-anscombes-quartet/)
-* [Bayesian or Frequentist, Which Are You?](http://videolectures.net/mlss09uk_jordan_bfway/) vielleicht die beste holistische Perspektive!
-* [Positioning Bayesian inference as a particular application of frequentist inference and vice versa](http://dx.doi.org/10.6084/m9.figshare.867707)
+* Überblick über verschiedene Verteilungen im Anhang 6.1 zu [*Probabilistic Approaches to Risk*](http://people.stern.nyu.edu/adamodar/) von [Aswath Damodaran](http://people.stern.nyu.edu/adamodar/), v.a. [Figure 6A.15](https://2.bp.blogspot.com/-SpjgitfNMb0/TteevRR_Y2I/AAAAAAAAAFQ/IZgd32z2AI8/s1600/distributions.png). Die Anwendung solcher Verteilung ist v.a. bei [GLM](http://www.statmethods.net/advstats/glm.html) sehr wichtig, wo wir eine nicht gaussche Verteilung unserer Daten bzw. Residuals bei einer Regression annehmen.
 * Software für Bayesian Modelling (wird nicht im Kurs genutzt, aber vielleicht interessant)
     - [Stan](http://mc-stan.org/)
     - [JAGS](http://mcmc-jags.sourceforge.net/)
@@ -245,40 +253,70 @@ Die Reihe *Use R!* von Springer ist **kostenlos** über das Uni-Netz elektronisc
     - [Null Hypothesis](http://www.xkcd.com/892/)
     - [Frequentists vs. Bayesians](http://xkcd.com/1132/)
 * [Spurious Correlations](http://www.tylervigen.com/)
-* [How would you explain covariance to someone who understands only the mean?](http://stats.stackexchange.com/questions/18058/how-would-you-explain-covariance-to-someone-who-understands-only-the-mean) [whubers Antwort](http://stats.stackexchange.com/a/18200/26743) ist besonders schön.
+* [How would you explain covariance to someone who understands only the mean?](http://stats.stackexchange.com/questions/18058/how-would-you-explain-covariance-to-someone-who-understands-only-the-mean) Besonders schön ist [whubers Antwort](http://stats.stackexchange.com/a/18200/26743).
 
-# Weitere Links zu spezifischen Themen
-* Warum gibt es bei manchen Formlen aus der deskriptiven Statistik $n-1$ und bei anderen $n$ als Nenner?
-    - [Bessel's Correction](https://en.wikipedia.org/wiki/Bessel%27s_correction)
-    - [Korrigierte Stichprobenvarianz](https://de.wikipedia.org/wiki/Bessel-Korrektur)
-    - [Sample mean and sample covariance](https://en.wikipedia.org/wiki/Sample_mean_and_sample_covariance)
-    - [How exactly did statisticians agree to using (n-1) as the unbiased estimator for population variance without simulation?](http://stats.stackexchange.com/questions/100041/how-exactly-did-statisticians-agree-to-using-n-1-as-the-unbiased-estimator-for)
-* Konfidenz- und Credible Intervale 
-    - [Are there any examples where Bayesian credible intervals are obviously inferior to frequentist confidence intervals](http://stats.stackexchange.com/questions/2356/are-there-any-examples-where-bayesian-credible-intervals-are-obviously-inferior)
-    - [Why does a 95% CI not imply a 95% chance of containing the mean?](http://stats.stackexchange.com/questions/26450/why-does-a-95-ci-not-imply-a-95-chance-of-containing-the-mean)
-    - [What does a confidence interval (vs. a credible interval) actually express?](http://stats.stackexchange.com/questions/13655/what-does-a-confidence-interval-vs-a-credible-interval-actually-express)
-    - [Why do (a lot) fewer than 95% of my confidence intervals intersect the true parameter value in this simulation?](http://stats.stackexchange.com/questions/60809/why-do-a-lot-fewer-than-95-of-my-confidence-intervals-intersect-the-true-para?rq=1)
-    - [What, precisely, is a confidence interval?](http://stats.stackexchange.com/questions/6652/what-precisely-is-a-confidence-interval)
-    - [From a Bayesian probability perspective, why doesn't a 95% confidence interval contain the true parameter with 95% probability?](http://stats.stackexchange.com/questions/89099/from-a-bayesian-probability-perspective-why-doesnt-a-95-confidence-interval-c)
-    - [Binomial confidence interval estimation - why is it not symmetric?](http://stats.stackexchange.com/questions/4713/binomial-confidence-interval-estimation-why-is-it-not-symmetric?rq=1)
-* Gemischte Modelle
-    - Tutorials
-        * [von Bodo  Winter](http://www.bodowinter.com/tutorial/bw_LME_tutorial.pdf)
-        * [T. Florian Jaeger](https://hlplab.wordpress.com/2014/02/05/updated-slides-on-glm-glmm-plyr-etc-available/)
-        * [Baayen, Davidson und Bates 2008](http://dx.doi.org/10.1016/j.jml.2007.12.005)(und alle anderen Artikel aus der Ausgabe des *Journal of Memory and Language*)
-    - [Random Effects: Should I stay or should I go?](https://hlplab.wordpress.com/2009/05/14/random-effect-structure/) (vgl. auch [Barr et al 2013](        http://dx.doi.org/10.1016/j.jml.2012.11.001))
-    - [Going full Bayesian with mixed effects regression models](https://hlplab.wordpress.com/2013/12/13/going-full-bayesian-with-mixed-effects-regression-models/)
-    - [Diagnosing collinearity in mixed models from lme4](https://hlplab.wordpress.com/2011/02/24/diagnosing-collinearity-in-lme4/)
-    - [Multinomial random effects models in R](https://hlplab.wordpress.com/2009/05/07/multinomial-random-effects-models-in-r/)
-    - [Plotting effects for glmer(, family=”binomial”) models](https://hlplab.wordpress.com/2009/01/19/plotting-effects-for-glmer-familybimomial-models/)
-    - [Nagelkerke and CoxSnell Pseudo R2 for Mixed Logit Models](https://hlplab.wordpress.com/2009/08/29/nagelkerke-and-coxsnell-pseudo-r2-for-mixed-logit-models/)
-    - [old and new lme4](https://hlplab.wordpress.com/2014/03/17/old-and-new-lme4/)
-    - Nützliche Pakete
-        * `lme4`
-        * `lmerTest`
-        * `effects`
-        * `LMERConvenienceFunctions`
-        * `languageR`
+## Weitere Links zu spezifischen Themen
+
+### Warum gibt es bei manchen Formlen aus der deskriptiven Statistik $n-1$ und bei anderen $n$ als Nenner?
+  - [Bessel's Correction](https://en.wikipedia.org/wiki/Bessel%27s_correction)
+  - [Korrigierte Stichprobenvarianz](https://de.wikipedia.org/wiki/Bessel-Korrektur)
+  - [Sample mean and sample covariance](https://en.wikipedia.org/wiki/Sample_mean_and_sample_covariance)
+  - [How exactly did statisticians agree to using (n-1) as the unbiased estimator for population variance without simulation?](http://stats.stackexchange.com/questions/100041/how-exactly-did-statisticians-agree-to-using-n-1-as-the-unbiased-estimator-for)
+
+### Schools of Statistical Thought
+  - [Schools of Statistical Thought as Religion](http://andrewgelman.com/2014/04/12/schools-of-statistical-thoughts-are-sometimes-jokingly-likened-to-religions-this-analogy-is-not-perfect-unlike-religions-statistical-methods-have-no-supernatural-content-and-make-essentially-no-d/)
+  - [Bayesian Modelling of Anscombe's Quartet](http://www.sumsar.net/blog/2013/06/bayesian-modeling-of-anscombes-quartet/)
+  - [Bayesian or Frequentist, Which Are You?](http://videolectures.net/mlss09uk_jordan_bfway/) vielleicht die beste holistische Perspektive!
+  - [Positioning Bayesian inference as a particular application of frequentist inference and vice versa](http://dx.doi.org/10.6084/m9.figshare.867707)
+  - [What is Bayesian / Frequentist Interference?](http://normaldeviate.wordpress.com/2012/11/17/what-is-bayesianfrequentist-inference/) -- auch eine sehr gute, ausgewogene Perspektive
+  - [On Chomsky and the Two Cultures of Statistical Learning](http://norvig.com/chomsky.html)
+  - *The Signal and the Noise* von Nate Silver
+      * Gary Marcus, ["What Nate Silver Gets Wrong"](http://www.newyorker.com/online/blogs/books/2013/01/what-nate-silver-gets-wrong.html)
+      * Larry Wasserman, [Nate Silver is a Frequentist](http://normaldeviate.wordpress.com/2012/12/04/nate-silver-is-a-frequentist-review-of-the-signal-and-the-noise/)
+
+### Konfidenz- und Credible Intervale 
+  - [Are there any examples where Bayesian credible intervals are obviously inferior to frequentist confidence intervals](http://stats.stackexchange.com/questions/2356/are-there-any-examples-where-bayesian-credible-intervals-are-obviously-inferior)
+  - [Why does a 95% CI not imply a 95% chance of containing the mean?](http://stats.stackexchange.com/questions/26450/why-does-a-95-ci-not-imply-a-95-chance-of-containing-the-mean)
+  - [What does a confidence interval (vs. a credible interval) actually express?](http://stats.stackexchange.com/questions/13655/what-does-a-confidence-interval-vs-a-credible-interval-actually-express)
+  - [Why do (a lot) fewer than 95% of my confidence intervals intersect the true parameter value in this simulation?](http://stats.stackexchange.com/questions/60809/why-do-a-lot-fewer-than-95-of-my-confidence-intervals-intersect-the-true-para?rq=1)
+  - [What, precisely, is a confidence interval?](http://stats.stackexchange.com/questions/6652/what-precisely-is-a-confidence-interval)
+  - [From a Bayesian probability perspective, why doesn't a 95% confidence interval contain the true parameter with 95% probability?](http://stats.stackexchange.com/questions/89099/from-a-bayesian-probability-perspective-why-doesnt-a-95-confidence-interval-c)
+  - [Binomial confidence interval estimation - why is it not symmetric?](http://stats.stackexchange.com/questions/4713/binomial-confidence-interval-estimation-why-is-it-not-symmetric?rq=1)
+
+### Gemischte Modelle
+  - [lmer, p-values and all that](https://stat.ethz.ch/pipermail/r-help/2006-May/094765.html)
+  - Tutorials
+      * [Bodo Winter](http://www.bodowinter.com/tutorial/bw_LME_tutorial.pdf)
+      * [Baayen, Davidson und Bates 2008](http://dx.doi.org/10.1016/j.jml.2007.12.005) (und alle anderen Artikel aus der Ausgabe des *Journal of Memory and Language*)
+      * Ben Ogorek, [Random regression coefficients using lme4](http://www.r-bloggers.com/random-regression-coefficients-using-lme4/)
+      * [T. Florian Jaeger](https://hlplab.wordpress.com/2014/02/05/updated-slides-on-glm-glmm-plyr-etc-available/)
+      * Jonathan Harrington (Professsor der Phonetik an der LMU). Die zwei Tutorials sind nicht ganz gleich!
+          - [Auf Deutsch](http://www.phonetik.uni-muenchen.de/~jmh/lehre/sem/ws1213/Rspeech/mm.pdf)
+          - [Auf Englisch](http://www.phonetik.uni-muenchen.de/~jmh/lehre/sem/ss11/statfort/glmm.pdf)
+  - [Random Effects: Should I stay or should I go?](https://hlplab.wordpress.com/2009/05/14/random-effect-structure/) (vgl. auch [Barr et al 2013](        http://dx.doi.org/10.1016/j.jml.2012.11.001))
+  - [Going full Bayesian with mixed effects regression models](https://hlplab.wordpress.com/2013/12/13/going-full-bayesian-with-mixed-effects-regression-models/)
+  - [Diagnosing collinearity in mixed models from lme4](https://hlplab.wordpress.com/2011/02/24/diagnosing-collinearity-in-lme4/)
+  - [Multinomial random effects models in R](https://hlplab.wordpress.com/2009/05/07/multinomial-random-effects-models-in-r/)
+  - [Plotting effects for glmer(, family=”binomial”) models](https://hlplab.wordpress.com/2009/01/19/plotting-effects-for-glmer-familybimomial-models/)
+  - [Nagelkerke and CoxSnell Pseudo R2 for Mixed Logit Models](https://hlplab.wordpress.com/2009/08/29/nagelkerke-and-coxsnell-pseudo-r2-for-mixed-logit-models/)
+  - [old and new lme4](https://hlplab.wordpress.com/2014/03/17/old-and-new-lme4/)
+  - [Test equivalence of non-nested models](http://stats.stackexchange.com/questions/8513/test-equivalence-of-non-nested-models)
+  - [Entwurf des `lme4`Buches](http://lme4.r-forge.r-project.org/book/) von Doug Bates
+  - Nützliche Pakete
+      * [`lme4`](http://cran.r-project.org/web/packages/lme4): Linear mixed-effects models using Eigen and S4
+      * [`lmerTest`](http://cran.r-project.org/web/packages/lmerTest/): Tests for random and fixed effects for linear mixed effect models (lmer objects of lme4 package)
+      * [`effects`](http://cran.r-project.org/web/packages/effects/): Effect Displays for Linear, Generalized Linear, Multinomial-Logit, Proportional-Odds Logit Models and Mixed-Effects Models
+      * [`LMERConvenienceFunctions`](http://cran.r-project.org/web/packages/LMERConvenienceFunctions/): A suite of functions to back-fit fixed effects and forward-fit random effects, as well as other miscellaneous functions
+      * [`languageR`](http://cran.r-project.org/web/packages/languageR/): Data sets and functions with "Analyzing Linguistic Data: A practical introduction to statistics"
+      * [`multcomp`](http://cran.r-project.org/web/packages/multcomp/) Simultaneous Inference in General Parametric Models
+      * [`blme`](http://cran.r-project.org/web/packages/blme/): Bayesian Linear Mixed-Effects Models
+      * [`nlme`](http://cran.r-project.org/web/packages/nlme/): Linear and Nonlinear Mixed Effects Models
+      * [`glmer2stan`](https://github.com/rmcelreath/glmer2stan): Define Stan models using glmer-style (lme4) formulas
+  - Beispiele für die Anwendung von gemischten Modellen in der Literatur
+    - [Kliegel et al. (2011)](http://dx.doi.org/10.3389/fpsyg.2010.00238)
+    - [Roehm et al. (2012)](http://dx.doi.org/10.1080/01690965.2012.712143)
+    - [Wieling et al. (2011)](http://dx.doi.org/10.1371/journal.pone.0023613)
+
 
 # License
 This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Germany License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/de/.

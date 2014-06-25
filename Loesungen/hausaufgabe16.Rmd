@@ -1,0 +1,126 @@
+% Hausaufgabe 16
+% Phillip Alday <phillip.alday@staff.uni-marburg.de>
+% 2014-06-22
+
+Falls die Umlaute in dieser und anderen Dateien nicht korrekt dargestellt werden, sollten Sie File > Reopen with Encoding > UTF-8 sofort machen (und auf jeden Fall ohne davor zu speichern), damit die Enkodierung korrekt erkannt wird! 
+
+```{r, echo=FALSE}
+# Notwendige Pakete laden
+library(ggplot2)
+library(ez)
+library(xtable)
+library(reshape2)
+suppressPackageStartupMessages(library(knitcitations))
+```
+
+# Die nächsten Punkte sollten beinahe automatisch sein...
+1. Kopieren Sie diese Datei in Ihren Ordner (das können Sie innerhalb RStudio machen oder mit Explorer/Finder/usw.) und öffnen Sie die Kopie. Ab diesem Punkt arbeiten Sie mit der Kopie. Die Kopie bitte `hausaufgabe16.Rmd` nennen und nicht `Kopie...`
+2. Sie sehen jetzt im Git-Tab, dass die neue Datei als unbekannt (mit gelbem Fragezeichen) da steht. Geben Sie Git Bescheid, dass Sie die Änderungen in der Datei verfolgen möchten (auf Stage klicken).
+3. Machen Sie ein Commit mit den bisherigen Änderungen (schreiben Sie eine sinnvolle Message dazu -- sinnvoll bedeutet nicht unbedingt lang) und danach einen Push.
+4. Ersetzen Sie meinen Namen oben mit Ihrem. Klicken auf Stage, um die Änderung zu merken.
+5. Ändern Sie das Datum auf heute. (Seien Sie ehrlich! Ich kann das sowieso am Commit sehen.)
+6. Sie sehen jetzt, dass es zwei Symbole in der Status-Spalte gibt, eins für den Zustand im *Staging Area* (auch als *Index* bekannt), eins für den Zustand im Vergleich zum Staging Area. Sie haben die Datei modifiziert, eine Änderung in das Staging Area aufgenommen, und danach weitere Änderungen gemacht. Nur Änderungen im Staging Area werden in den Commit aufgenommen.
+7. Stellen Sie die letzten Änderungen auch ins Staging Area und machen Sie einen Commit (immer mit sinnvoller Message!).
+8. Vergessen Sie nicht am Ende, die Lizenz ggf. zu ändern!
+
+# Diamonds are forever 
+Bisher haben Sie von mir mehr oder weniger vollständige Analysen bekommen, bei denen Sie im Prinzip nur einzelne Schritte einfügen müssten. Es wird allerdings langsam Zeit, dass Sie eine eigenständige Analyse ausführen. Sie haben das bei der Analyse vom Priming Experiment mittels ANOVA fast gemacht, aber auch da haben Sie viel von mir vorgefertigt bekommen. Für die Aufgaben heute werden Sie den Datensatz `diamonds` aus `ggplot2` bearbeiten. Schauen Sie sich die Beschreibung des Datensatzes an
+
+```{r, eval=FALSE}
+?diamonds
+```
+<div style="border: 2px solid black; padding: 5px; font-size: 80%;">
+```{r, echo=FALSE, results='asis'}
+tools:::Rd2HTML(utils:::.getHelpFile(help(diamonds)),stylesheet="")
+```
+</div>
+
+Die Aufgabe ist: eine Ausgangsfrage und die darauf folgenden Anschlussfragen statistisch zu beantworten. Sie können auch einige kleinere Fragen als Gruppe behandeln. Sie haben freie Wahl von Methoden und Fragen, aber sie müssen natürlich zueinander passen!
+
+Mögliche Ausgangsfragen sind unter anderem:
+
+* Was bestimmt den Preis eines Diamanten?
+* Was bestimmt das Gewicht eines Diamanten? Hat Farbe oder Klarheit eine Auswirkung daruf oder bloß Volumen?
+* Gibt es einen Zusammenhang zwischen den verschieden Dimensionen ("Längen")? 
+* Gibt es einen Zusammenhang zwischen Farbe und Klarheit? Zwischen Farbe und Carat? Zwischen Farbe und Tiefe?
+* ...
+
+*Vergessen Sie dabei nicht, dass wir bisher nur Methoden gelernt haben, wo die abhängige Variable zumindest intervallskaliert ist!*
+
+Sie können sich auch [das *ggplot* Buch](http://dx.doi.org/10.1007/978-0-387-98141-3) zur Inspiration anschauen, v.a. Abbildungen 4.7, 4.8, 4.9, 5.2, 5.3, 5.4, 5.6, 5.14, 7.16, 9.1  und Kapitel 2.2-2.5 könnten inspirierend wirken. Den Code zur Erstellung der Figuren findet man immer im Haupttext.
+
+**Originelle Fragestellungen und Auswertungen werden mit Bonuspunkten belohnt!** 
+
+Hier ein paar Grafiken (auch im Buch zu finden):
+```{r}
+ggplot(diamonds,aes(x=carat,y=price,color=color)) + geom_point()
+ggplot(diamonds,aes(x=carat,y=price,color=color)) + geom_point(alpha=0.3)
+ggplot(diamonds,aes(x=carat,y=price,color=color)) + geom_point() + facet_wrap(~color)
+```
+
+# Was bestimmt den Preis eines Diamanten?
+
+## "Subjektive" Schönheit
+Die Eigenschaften cut, color und clarity sind eher "subjektive" (obgleich es Normen gibt, an die die meisten sich halten). Sie sind auch kategorisch, vielleicht gibt uns ANOVA einen schellen eindruck.
+```{r,results='asis'}
+c3.aov <- aov(price  ~ cut*color*clarity,data=diamonds)
+print(xtable(summary(c3.aov)
+             , display=c("s","d","f","f","f","g")
+             , digits= c( 0,  0,  1,  2,  2,  0  )
+             ),type="HTML")
+```
+
+Bemerken Sie dabei, dass wir an manchen Stellen einen $p$-Wert von ` < 2e-16 `, was so viel heißt, dass wir die grenzen der numerischen Verfahren erreicht haben. Mehr dazu kann man [hier](http://stats.stackexchange.com/questions/78839/why-does-r-have-a-minimum-p-value-of-le-2-22e-16-how-should-p-be-reported-in) lesen, aber vielleicht fassen die folgenden Aussagen (auf der verlinkten Seite zu finden) das kurz und knapp genug zusammen:
+
+> This is true, and worth pointing out, but it may also be worth mentioning that in this case the $p$-value should be really thought of **only** as an index of signal strength -- such small $p$-values (sometimes even if corrected for multiple comparisons) are so tiny that the probability that the NSA broke in and tampered with your data (and then brainwashed you so you can't remember) is far, far, higher than the nominal $p$-value. 
+
+(Ben Bolker, einer der Hauptentwickler des wichtigen Pakets `lme4`!)
+
+> Indeed, while less probable than "the NSA tampered with your data", even events like "A cosmic ray flipped several important bits in your data" are far, far more likely than those probabilities. 
+
+(Glen_b, eine bekannte Persönlichkeit auf [CrossValidated](http://stats.stackexchange.com/))
+
+Aber ANOVA sagt uns nur, welche Prediktoren viel Varianz erklären, nicht was die tatsächliche Auswirkung eines Prediktors ist. Dafür brauchen wir lineare Regression -- aber wir wissen schon, dass ANOVA ein Sonderfall von Regression ist. R nutzt sogar versteckt `lm()`, um ANOVA zu berechnen! Nun müssten wir für jede Kategorische Variable entscheiden, was eine sinnvolle Vergleichstufe wäre, was nicht so leicht ist, wenn man wenig über Diamonten weißt. Vielleicht reicht es momentan zu wissen, dass alle drei Color, Cut und Clarity, sowie auch ihre Interaktionen eine signifikante Auswirkung auf den Preis eines Diamanten hat.
+
+# "Objektive" Größe
+Es gibt verschiedene Maße der Größe eines Diamanten, aber ein super "Omnibus"-Modell hat Nachteile, indem es schwierig zu interpretieren ist und fällig für $\alpha$-Fehle ist. (Wie bei ANOVA müssen wir aufpassen, denn wir führen eigentlich halb-versteckt mehrere Tests aus!) Depth kann man direkt von x, y, und z berechnen, und Table korreliert wahrscheinlich auch sehr stark mit x und y (das könnten Sie mittlerweile auch Testen, aber nicht zur Zeit dieser Hausaufgabe...), weshalb wir sie erst mal weglassen. Angenommen, dass Diamonten mehr oder weniger eine feste Dichte haben, ist auch carat (das Gewicht) eine Funktion von x,y, und z, d.h. carat korreliert sehr stark mit x,y und z, weshlab wir das weglassen sollten.
+
+```{r, results='asis'}
+size.lm <- lm(price  ~ x*y*z,data=diamonds)
+size.lm.sum <- summary(size.lm)
+print(xtable(size.lm.sum),type="HTML")
+```
+
+| Modell Fit     |                              |
+|----------------|------------------------------|
+| Maß            |                              |
+| AIC            | `r AIC(size.lm)`.            |
+| Multiple $R^2$ |`r size.lm.sum$r.squared`     |
+| Adjusted $R^2$ |`r size.lm.sum$adj.r.squared` |
+
+
+Wie kurz im Unterricht erwähnt, ist AIC wie $R^2$ und $F$ ein Maß für das Fit eines Modells mit einem wichtigen Unterschied. AIC geht auf Log Likelihood (ein anderes Maß für Fit, mehr dazu später) zurück, hat aber eine "Strafe" für Overfitting durch zu viele Parameter. Das heißt, wenn wir weitere Prediktoren einführen, um ein künstlich gutes Fit zu bekommen, (d.h. ein Modell, dass genau zu den vorhandenen Daten passt, aber sich nicht über weitere Daten hinaus generalisieren lässt), ohne unser Modell wirklich besser zu machen, wird das AIC schlechter. Bei AIC ist kleiner besser, aber es gibt keine absolut "guten" und keine absolut "schlechten" Werte, man muss es immer im Vergleich nutzen. 
+
+Wir könnten natürlich auch Modell mit *nur* carat berechnen
+```{r, results='asis'}
+carat.lm <- lm(price~ carat,data=diamonds)
+carat.lm.sum <- summary(carat.lm)
+print(xtable(carat.lm.sum),type="HTML")
+```
+
+| Modell Fit     |                               |
+|----------------|-------------------------------|
+| Maß            |                               |
+| AIC            | `r AIC(carat.lm)`.            |
+| Multiple $R^2$ |`r carat.lm.sum$r.squared`     |
+| Adjusted $R^2$ |`r carat.lm.sum$adj.r.squared` |
+
+Die Zusammenwirkung der Einzeldimensionen scheint wichtiger zu sein als bloßes Gewicht!
+
+# Noch eine Überlegung
+Haben Sie dabei explorativ oder konfirmativ gearbeitet? Was hat das für eine Auswirkung auf die Interpretation der Ergebnisse?
+
+**Die Fragen sollten Sie sich auf jeden Fall gut überlegen!** Es kommt sehr auf Ihre genaue Analyse an, aber solche Fragen sollte man nach einem Statistik-Kurs beantworten können! *cough, cough*
+
+# Lizenz
+Dieses Werk ist lizenziert unter einer CC-BY-NC-SA Lizenz.
