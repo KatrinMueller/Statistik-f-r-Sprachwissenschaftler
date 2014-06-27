@@ -1,6 +1,6 @@
 % Hausaufgabe 20
 % Katrin Müller <Muelle63@students.uni-marburg.de>
-% 2014-06-25
+% 2014-06-27
 
 Falls die Umlaute in dieser und anderen Dateien nicht korrekt dargestellt werden, sollten Sie File > Reopen with Encoding > UTF-8 sofort machen (und auf jeden Fall ohne davor zu speichern), damit die Enkodierung korrekt erkannt wird! 
 
@@ -47,7 +47,9 @@ Die Items in dieser Studie sind "Szenarien", also Situationen wo man mehr oder w
 
 Allerdings merken wir, dass `scenario` falsch kodiert ist, was wir korrigieren müssen:
 
-CODE_BLOCK_HIER
+```{r}
+stimmen$scenario <- as.factor(stimmen$scenario)
+```
 
 ## Auswirkung der experimentellen Manipulation
 Um einen groben Eindruck zu bekommen, können wir schnell einen Boxplot machen:
@@ -74,11 +76,15 @@ Wir können auf ähnliche Art und Weise ein Plot für die Versuchspersonen und S
 
 Erstellen Sie einen Boxplot für `frequency` nach `subject`, wie oben für `frequency` nach `attitude` gemacht wurde (hier ohne Aufteilung nach Geschlecht). Dieser gibt uns einen Blick in die Varianz innerhalb und zwischen Versuchspersonen. 
 
-CODE_BLOCK_HIER
+```{r}
+ggplot(stimmen) + geom_boxplot(aes(x=subject,y=frequency))
+```
 
 Machen Sie das gleiche für `scenario`. 
 
-CODE_BLOCK_HIER
+```{r}
+ggplot(stimmen) + geom_boxplot(aes(x=scenario,y=frequency))
+```
 
 Gibt es mehr Varianz zwischen Szenarien oder zwischen Versuchspersonen? 
 
@@ -111,8 +117,8 @@ Haben sich die Koeffizienten oder Standardfehler geändert?
 Jetzt berechen wir das Modell mit der Interaktion zwischen `gender` und `attitude`. 
 
 ```{r}
-#model.attitude.int <- CODE_HIER
-#summary(model.attitude.int)
+model.attitude.int <- lmer(frequency ~ gender * attitude + (1|subject) + (1|scenario), data=stimmen, REML=FALSE)
+summary(model.attitude.int)
 ```
 
 Haben sich die Koeffizienten oder Standardfehler geändert?
@@ -120,7 +126,7 @@ Haben sich die Koeffizienten oder Standardfehler geändert?
 Ist die Interaktion signifikant? Wir können uns den Koeffizienten anschauen, aber uns interessiert ob *das Model besser geworden ist*. Das testen wir mit `anova()`
 
 ```{r}
-#anova(model.attitude,model.attitude.int)
+anova(model.attitude,model.attitude.int)
 ```
 
 Hat die Interkation das Modell verbessert? Wenn ein komplexeres Modell nicht signifikant besser als ein einfacheres Modell ist, bleiben wir bei dem einfacheren Modell! 
@@ -138,9 +144,11 @@ Haben sich die Koeffizienten oder Standardfehler (im Vergleich zu `model.attitud
 
 Hat dieses Modell ein signifikante besseres Fit als `model.attitude`? 
 
-CODE_BLOCK_HIER
+```{r}
+anova(model.attitude, model.attitude.re.slope)
+```
 
-Könnten wir hier ein Intercepts-Only-Modell begründen? 
+Könnten wir hier ein Intercepts-Only-Modell begründen?
 
 Wir könnten -- sollten -- uns hier auch das Modell mit `gender` in der RE-Struktur anschauen, aber solche Berechnungen werden sehr schnell für eine Hausaufgabe zu aufwendig. Sie können sich an dieser Stelle schon vorstellen, wie kompliziert die RE-Struktur werden kann. Wir müssten für jeden zufälligen Effekt die maximale berechenbare Struktur finden und die einzelnen Berechnungen können schon ziemlich lange dauern. Das ist ein deutlicher Nachteil dieser Methode.   
 
@@ -190,5 +198,5 @@ bibliography()
 ```
 
 # Lizenz
-Dieses Werk ist lizenziert unter einer CC-BY-NC-SA Lizenz.
+Diese Datei dient nur Prüfungszwecken.
 
